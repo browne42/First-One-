@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wassup World</title>
+    <!-- Importing a bubbly font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ff69b4;
+            --blue: #1e90ff;
+            --bg-default: #f0f0f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Fredoka', sans-serif;
+            background-color: var(--bg-default);
+            transition: background-color 0.5s ease;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        /* Bubbly text styling with alternating colors */
+        .wassup {
+            color: var(--pink);
+            text-shadow: 4px 4px 0px var(--blue);
+            letter-spacing: 5px;
+        }
+
+        .world {
+            color: var(--blue);
+            text-shadow: 4px 4px 0px var(--pink);
+            letter-spacing: 5px;
+        }
+
+        /* Interactive Button Styling */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-family: 'Fredoka', sans-serif;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            background-color: #333;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #555;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="main-text">
+            <span class="wassup">Wassup</span> 
+            <span class="world">World!</span>
+        </h1>
+        <br>
+        <button id="bg-toggle">Toggle Background Color</button>
+    </div>
+
+    <footer>Created for the Semester Project Initial Push</footer>
+
+    <script>
+        const colors = [
+            '#f0f0f0', // Default light gray
+            '#ffdae9', // Soft pink
+            '#d0e7ff', // Soft blue
+            '#fff4d0', // Soft yellow
+            '#d0ffd6'  // Soft green
+        ];
+        
+        let currentIndex = 0;
+        const body = document.body;
+        const btn = document.getElementById('bg-toggle');
+
+        btn.addEventListener('click', () => {
+            // Cycle through the colors array
+            currentIndex = (currentIndex + 1) % colors.length;
+            body.style.backgroundColor = colors[currentIndex];
+            
+            // Add a little "pop" effect to the text when clicked
+            const text = document.getElementById('main-text');
+            text.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                text.style.transform = 'scale(1)';
+            }, 150);
+        });
+    </script>
+</body>
+</html>
