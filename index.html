@@ -18,22 +18,36 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             min-height: 100vh;
             font-family: 'Fredoka', sans-serif;
             background-color: var(--bg-default);
             transition: background-color 0.5s ease;
             text-align: center;
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+        }
+
+        .music-controls {
+            margin-bottom: 1rem;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .container {
             padding: 2rem;
+            width: 100%;
+            max-width: 1200px;
         }
 
         h1 {
             font-size: 5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             display: inline-block;
         }
 
@@ -51,9 +65,17 @@
         }
 
         /* Interactive Button Styling */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
         button {
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-family: 'Fredoka', sans-serif;
             cursor: pointer;
             border: none;
@@ -69,13 +91,81 @@
             background-color: #555;
         }
 
+        button#music-toggle {
+            background-color: var(--pink);
+        }
+
         button:active {
             transform: scale(0.95);
         }
 
+        /* New Content Sections Styling */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid var(--blue);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1) rotate(2deg);
+            z-index: 10;
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 4px solid var(--pink);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue);
+        }
+
+        /* Make the gallery section take up more space if needed */
+        #gallery {
+            grid-column: 1 / -1;
+        }
+
+        .section-title {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            flex-grow: 1;
+        }
+
         footer {
-            position: absolute;
-            bottom: 20px;
+            margin-top: 4rem;
             font-size: 0.9rem;
             color: #666;
         }
@@ -83,13 +173,62 @@
 </head>
 <body>
 
+    <div class="music-controls">
+        <span>🎵 Background Music</span>
+        <button id="music-toggle" style="padding: 8px 20px; margin-bottom: 0; font-size: 0.9rem;">Play</button>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="container">
         <h1 id="main-text">
             <span class="wassup">Wassup</span> 
             <span class="world">World!</span>
         </h1>
         <br>
-        <button id="bg-toggle">Toggle Background Color</button>
+        
+        <div class="btn-group">
+            <button id="bg-toggle">Toggle Background Color</button>
+        </div>
+
+        <div class="content-grid">
+            <section id="biography">
+                <h2 class="section-title" style="color: var(--pink);">Biography</h2>
+                <p>
+                    Hello! I'm E'lyssia Brown, a third-year Psychology major with a minor in Management. I'm originally from Columbus, Georgia. When I'm not studying, I love playing Just Dance and spending quality time with the people closest to me!
+                </p>
+            </section>
+
+            <section id="expertise">
+                <h2 class="section-title">College Expertise</h2>
+                <p>
+                    My academic focus blends psychological theory with management principles. I have experience in psychological research methods and am currently exploring how human behavior intersects with organizational structures.
+                </p>
+            </section>
+
+            <section id="interests">
+                <h2 class="section-title" style="color: var(--pink);">Career Interests</h2>
+                <p>
+                    I am passionate about the practical application of psychology in the professional world. My primary career interests lie in Consumer Psychology and Industrial-Organizational (I-O) Psychology.
+                </p>
+            </section>
+
+            <section id="gallery">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <img src="AD721145-EE50-4CAB-A171-26221C67898C.JPG" alt="Photo 1" class="gallery-item">
+                    <img src="IMG_0151.jpeg" alt="Photo 2" class="gallery-item">
+                    <img src="IMG_1585.jpeg" alt="Photo 3" class="gallery-item">
+                    <img src="IMG_2791.jpg" alt="Photo 4" class="gallery-item">
+                    <img src="IMG_3551.jpeg" alt="Photo 5" class="gallery-item">
+                    <img src="IMG_9619.JPEG" alt="Photo 6" class="gallery-item">
+                </div>
+            </section>
+        </div>
     </div>
 
     <footer>Created for the Semester Project Initial Push</footer>
@@ -106,13 +245,26 @@
         let currentIndex = 0;
         const body = document.body;
         const btn = document.getElementById('bg-toggle');
+        const musicBtn = document.getElementById('music-toggle');
+        const audio = document.getElementById('bg-music');
+
+        // Music Toggle Logic
+        musicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.textContent = 'Pause';
+                musicBtn.style.backgroundColor = '#333';
+            } else {
+                audio.pause();
+                musicBtn.textContent = 'Play';
+                musicBtn.style.backgroundColor = '#ff69b4';
+            }
+        });
 
         btn.addEventListener('click', () => {
-            // Cycle through the colors array
             currentIndex = (currentIndex + 1) % colors.length;
             body.style.backgroundColor = colors[currentIndex];
             
-            // Add a little "pop" effect to the text when clicked
             const text = document.getElementById('main-text');
             text.style.transform = 'scale(1.1)';
             setTimeout(() => {
